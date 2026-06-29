@@ -66,24 +66,42 @@
   }
 
   /* Code Body Styling */
-  .window-body {
-    padding: 16px;
-    font-size: 12px;
-    line-height: 1.6;
-    text-align: left;
-    font-family: 'Courier New', Courier, monospace;
-  }
+  /* Code Body Styling - Sleek VS Code / GitHub Dark theme */
+.window-body {
+  padding: 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: left;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  color: #e6edf3; /* Clean off-white text */
+}
 
-  .window-body pre { margin: 0; white-space: pre-wrap; }
-  .keyword { color: #ff79c6; }
-  .comment { color: #6272a4; font-style: italic; }
-  .string { color: #f1fa8c; }
-  .output { color: #50fa7b; display: block; margin-top: 12px; border-top: 1px solid #333; padding-top: 8px; }
+.window-body pre { 
+  margin: 0; 
+  white-space: pre-wrap; 
+}
 
-  /* Clear margins on the text below to keep spacing consistent */
-  .project-description {
-    margin-top: 20px;
-  }
+/* Sophisticated Syntax Highlighting Palette */
+.keyword { 
+  color: #ff7b72; /* Subtle coral red for functions/keywords */
+} 
+
+.string { 
+  color: #a5d6ff; /* Soft, readable sky blue for strings */
+}
+
+.comment { 
+  color: #8b949e; /* Muted slate gray for comments */
+  font-style: italic; 
+}
+
+.output { 
+  display: block; 
+  margin-top: 14px; 
+  padding-top: 10px; 
+  border-top: 1px solid #30363d; /* Very subtle separator line */
+  color: #7ee787; /* Soft mint green for output text */
+}
 </style>
 </head>
 <body>
