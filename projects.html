@@ -7,6 +7,103 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<style>
+  /* Container layout for cards with previews */
+  .card-with-preview {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-info {
+    flex: 1.2;
+  }
+
+  /* --- THE NOTEBOOK WINDOW --- */
+  .notebook-window {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    background-color: #1e1e1e; /* Dark theme code look */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    text-decoration: none; 
+    display: block;
+    
+    /* Smooth 3D transition for the "flow and pop" effect */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+  }
+
+  /* The Hover "Pop and Flow" Effect */
+  .notebook-window:hover {
+    cursor: pointer;
+    /* Lifts up, straightens out, and adds a subtle glow */
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-6px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25), 0 0 15px rgba(0, 123, 255, 0.15);
+  }
+
+  /* Window Top Bar (Mac style) */
+  .window-header {
+    background-color: #2d2d2d;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #3d3d3d;
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .red { background-color: #ff5f56; }
+  .yellow { background-color: #ffbd2e; }
+  .green { background-color: #27c93f; }
+
+  .window-title {
+    color: #999;
+    font-size: 11px;
+    margin-left: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Code Body Styling */
+  .window-body {
+    padding: 16px;
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .window-body pre { margin: 0; white-space: pre-wrap; }
+  .keyword { color: #ff79c6; }
+  .comment { color: #6272a4; font-style: italic; }
+  .string { color: #f1fa8c; }
+  .output { color: #50fa7b; display: block; margin-top: 12px; border-top: 1px solid #333; padding-top: 8px; }
+
+  /* Responsive Mobile Layout */
+  @media (max-width: 768px) {
+    .card-with-preview {
+      flex-direction: column;
+      gap: 24px;
+    }
+    .notebook-window {
+      max-width: 100%;
+      width: 100%;
+      transform: none; /* Flatten on mobile for better usability */
+    }
+    .notebook-window:hover {
+      transform: translateY(-4px);
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -33,11 +130,34 @@
     <section>
       <div class="card-list">
 
-        <div class="card">
-          <h3>US Domestic Flight Price Prediction</h3>
-          <p class="meta">2026 · <a href="https://github.com/yourusername/project-one">View on GitHub</a></p>
-          <p>This project aims to predict U.S. domestic flight prices using machine learning and a large-scale Expedia dataset containing over 82 million records. It explores the key factors that influence airfare, including booking timing, airline, cabin class, and itinerary characteristics, through statistical analysis and regression modeling. The project also demonstrates scalable data processing techniques using DuckDB to efficiently analyze large datasets that exceed in-memory computing limits.</p>
-          <p class="tags">Big Data Analytics · Data Visualization · Python · DuckDB · API · Pandas · NumPy · Scikit-learn · XGBoost · Matplotlib</p>
+        <div class="card card-with-preview">
+          <div class="card-info">
+            <h3>US Domestic Flight Price Prediction</h3>
+            <p class="meta">2026 · <a href="https://github.com/yourusername/project-one">View on GitHub</a></p>
+            <p>This project aims to predict U.S. domestic flight prices using machine learning and a large-scale Expedia dataset containing over 82 million records. It explores the key factors that influence airfare, including booking timing, airline, cabin class, and itinerary characteristics, through statistical analysis and regression modeling. The project also demonstrates scalable data processing techniques using DuckDB to efficiently analyze large datasets that exceed in-memory computing limits.</p>
+            <p class="tags">Big Data Analytics · Data Visualization · Python · DuckDB · API · Pandas · NumPy · Scikit-learn · XGBoost · Matplotlib</p>
+          </div>
+
+          <a href="https://github.com/yourusername/project-one" class="notebook-window" target="_blank" aria-label="View Project Notebook">
+            <div class="window-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="window-title">flight_price_prediction.ipynb</span>
+            </div>
+            <div class="window-body">
+              <pre><code><span class="keyword">import</span> duckdb
+<span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb
+
+<span class="comment"># Connect to 82M+ records on disk</span>
+db = duckdb.connect(<span class="string">'expedia_flights.db'</span>)
+query = <span class="string">"SELECT * FROM flights WHERE cabin = 'economy'"</span>
+df = db.execute(query).df()
+
+print(f<span class="string">"Data loaded. Shape: {df.shape}"</span>)
+<span class="output">&gt;&gt;&gt; Data loaded. Shape: (82410213, 14) Successfully!</span></code></pre>
+            </div>
+          </a>
         </div>
 
         <div class="card">
