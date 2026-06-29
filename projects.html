@@ -131,22 +131,16 @@
       <div class="card-list">
 
         <div class="card card-with-preview">
-          <div class="card-info">
-            <h3>US Domestic Flight Price Prediction</h3>
-            <p class="meta">2026 · <a href="https://github.com/yourusername/project-one">View on GitHub</a></p>
-            <p>This project aims to predict U.S. domestic flight prices using machine learning and a large-scale Expedia dataset containing over 82 million records. It explores the key factors that influence airfare, including booking timing, airline, cabin class, and itinerary characteristics, through statistical analysis and regression modeling. The project also demonstrates scalable data processing techniques using DuckDB to efficiently analyze large datasets that exceed in-memory computing limits.</p>
-            <p class="tags">Big Data Analytics · Data Visualization · Python · DuckDB · API · Pandas · NumPy · Scikit-learn · XGBoost · Matplotlib</p>
-          </div>
 
-          <a href="https://github.com/yourusername/project-one" class="notebook-window" target="_blank" aria-label="View Project Notebook">
-            <div class="window-header">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-              <span class="window-title">flight_price_prediction.ipynb</span>
-            </div>
-            <div class="window-body">
-              <pre><code><span class="keyword">import</span> duckdb
+  <a href="https://github.com/yourusername/project-one" class="notebook-window" target="_blank" aria-label="View Project Notebook">
+    <div class="window-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="window-title">flight_price_prediction.ipynb</span>
+    </div>
+    <div class="window-body">
+      <pre><code><span class="keyword">import</span> duckdb
 <span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb
 
 <span class="comment"># Connect to 82M+ records on disk</span>
@@ -156,9 +150,17 @@ df = db.execute(query).df()
 
 print(f<span class="string">"Data loaded. Shape: {df.shape}"</span>)
 <span class="output">&gt;&gt;&gt; Data loaded. Shape: (82410213, 14) Successfully!</span></code></pre>
-            </div>
-          </a>
-        </div>
+    </div>
+  </a>
+
+  <div class="card-info">
+    <h3>US Domestic Flight Price Prediction</h3>
+    <p class="meta">2026 · <a href="https://github.com/yourusername/project-one">View on GitHub</a></p>
+    <p>This project aims to predict U.S. domestic flight prices using machine learning and a large-scale Expedia dataset containing over 82 million records. It explores the key factors that influence airfare, including booking timing, airline, cabin class, and itinerary characteristics, through statistical analysis and regression modeling. The project also demonstrates scalable data processing techniques using DuckDB to efficiently analyze large datasets that exceed in-memory computing limits.</p>
+    <p class="tags">Big Data Analytics · Data Visualization · Python · DuckDB · API · Pandas · NumPy · Scikit-learn · XGBoost · Matplotlib</p>
+  </div>
+
+</div>
 
         <div class="card">
           <h3>Project Two</h3>
