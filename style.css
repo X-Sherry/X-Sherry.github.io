@@ -1,10 +1,3 @@
-Perfect! Seeing your exact `style.css` explains everything. Your layout has a beautifully elegant, minimal typography theme, but the `.card` rules inside it were applying a monospace font style down to everything inside it.
-
-To fix this completely, seamlessly match your site's typography tokens (`var(--ink)`, `var(--muted)`, `Source Serif 4`), and use the sleek new GitHub-style dark theme for the code preview window, copy and paste this **all-in-one HTML solution**.
-
-You can replace your entire HTML file with this:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
