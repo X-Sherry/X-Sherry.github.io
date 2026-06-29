@@ -81,10 +81,13 @@
     white-space: pre-wrap; 
   }
 
-  /* Elegant Syntax Palette */
-  .keyword { color: #ff7b72; } 
-  .string { color: #a5d6ff; }
-  .output { 
+  /* Bulletproof string color helper targeting the quotes safely */
+  .window-body .str-text {
+    color: #a5d6ff;
+  }
+
+  /* Terminal output line indicator style */
+  .output-line { 
     display: block; 
     margin-top: 14px; 
     padding-top: 10px; 
@@ -97,7 +100,7 @@
     font-family: 'Times New Roman', Times, 'Source Serif 4', Georgia, serif !important;
     font-size: 15px !important; 
     line-height: 1.6 !important;
-    color: var(--ink) !important;
+    color: #1d1d1b !important;
     margin: 20px 0 16px 0 !important;
     letter-spacing: normal !important;
     text-transform: none !important;
@@ -141,16 +144,16 @@
               <span class="window-title">flight_price_prediction.ipynb</span>
             </div>
             <div class="window-body">
-              <pre><code>con = duckdb.connect()
+<pre><code>con = duckdb.connect()
 
-schema = con.execute(f<span class="string">"""
+schema = con.execute(f<span class="str-text">"""
     DESCRIBE SELECT * FROM read_csv_auto('{DATA_PATH}', header=True) LIMIT 1
 """</span>).df()
 
-print(f<span class="string">'Total columns: {len(schema)}'</span>)
+print(f<span class="str-text">'Total columns: {len(schema)}'</span>)
 display(schema)
 
-<span class="output">Total columns: 14</span></code></pre>
+<span class="output-line">Total columns: 14</span></code></pre>
             </div>
           </a>
 
