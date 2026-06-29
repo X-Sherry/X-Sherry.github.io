@@ -91,18 +91,38 @@
   /* Responsive Mobile Layout */
   @media (max-width: 768px) {
     .card-with-preview {
-      flex-direction: column;
-      gap: 24px;
-    }
+  display: flex;
+  flex-direction: column; 
+  gap: 24px;
+  align-items: flex-start; /* Aligns left to match your site's text alignment */
+}
+
+    .card-info {
+    width: 100%;
+}
     .notebook-window {
-      max-width: 100%;
-      width: 100%;
-      transform: none; /* Flatten on mobile for better usability */
-    }
+  width: 100%;
+  max-width: 550px; /* Slightly wider since it has more horizontal room now */
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-decoration: none; 
+  display: block;
+  margin-bottom: 8px; /* Adds a bit of breathing room before the title */
+  
+  /* Adjusted 3D transition to look best from a top-down perspective */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: perspective(1000px) rotateX(4deg);
+}
+
     .notebook-window:hover {
-      transform: translateY(-4px);
-    }
-  }
+  cursor: pointer;
+  /* Straightens out, lifts closer to the viewer, and glows */
+  transform: perspective(1000px) rotateX(0deg) translateY(-6px);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 123, 255, 0.15);
+}
+    
 </style>
 </head>
 <body>
