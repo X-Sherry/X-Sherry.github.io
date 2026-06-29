@@ -122,24 +122,17 @@
               <span class="dot green"></span>
               <span class="window-title">flight_price_prediction.ipynb</span>
             </div>
-            <div class="window-body">
+           <div class="window-body">
   <pre><code>con = duckdb.connect()
 
 schema = con.execute(f<span class="string">"""
     DESCRIBE SELECT * FROM read_csv_auto('{DATA_PATH}', header=True) LIMIT 1
 """</span>).df()
 
-print(f<span class="string">'Total columns: {len(schema)}'</span>)
+<span class="keyword">print</span>(f<span class="string">'Total columns: {len(schema)}'</span>)
 display(schema)
 
-<span class="output">&gt;&gt;&gt; Total columns: 14
-    ┌─────────────────┬─────────────┬─────────┐
-    │   column_name   │ column_type │  null   │
-    ├─────────────────┼─────────────┼─────────┤
-    │ flight_date     │ DATE        │ YES     │
-    │ fare_basis_code │ VARCHAR     │ YES     │
-    │ price           │ DOUBLE      │ YES     │
-    └─────────────────┴─────────────┴─────────┘</span></code></pre>
+<span class="output">Total columns: 14</span></code></pre>
 </div>
           </a>
 
