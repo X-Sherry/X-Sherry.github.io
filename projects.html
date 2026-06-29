@@ -9,41 +9,33 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-  /* Container layout for cards with previews */
-  .card-with-preview {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: space-between;
+  /* Changed from flex to block layout so everything stacks naturally */
+  .card-stacked-layout {
+    display: block;
   }
 
-  .card-info {
-    flex: 1.2;
-  }
-
-  /* --- THE NOTEBOOK WINDOW --- */
-  .notebook-window {
-    flex: 1;
-    min-width: 300px;
-    max-width: 450px;
-    background-color: #1e1e1e; /* Dark theme code look */
+  /* Adds nice breathing room around the window */
+  .card-stacked-layout .notebook-window {
+    width: 100%;
+    max-width: 650px; /* Adjusted slightly wider for a comfortable reading layout */
+    background-color: #1e1e1e;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     text-decoration: none; 
     display: block;
+    margin: 20px 0; /* Creates 20px of space above and below the window */
     
-    /* Smooth 3D transition for the "flow and pop" effect */
+    /* Subtle 3D lift animation curve */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+    transform: perspective(1000px) rotateX(3deg);
   }
 
-  /* The Hover "Pop and Flow" Effect */
-  .notebook-window:hover {
+  /* The Hover "Pop" Effect */
+  .card-stacked-layout .notebook-window:hover {
     cursor: pointer;
-    /* Lifts up, straightens out, and adds a subtle glow */
-    transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-6px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25), 0 0 15px rgba(0, 123, 255, 0.15);
+    transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 123, 255, 0.15);
   }
 
   /* Window Top Bar (Mac style) */
@@ -88,41 +80,10 @@
   .string { color: #f1fa8c; }
   .output { color: #50fa7b; display: block; margin-top: 12px; border-top: 1px solid #333; padding-top: 8px; }
 
-  /* Responsive Mobile Layout */
-  @media (max-width: 768px) {
-    .card-with-preview {
-  display: flex;
-  flex-direction: column; 
-  gap: 24px;
-  align-items: flex-start; /* Aligns left to match your site's text alignment */
-}
-
-    .card-info {
-    width: 100%;
-}
-    .notebook-window {
-  width: 100%;
-  max-width: 550px; /* Slightly wider since it has more horizontal room now */
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  text-decoration: none; 
-  display: block;
-  margin-bottom: 8px; /* Adds a bit of breathing room before the title */
-  
-  /* Adjusted 3D transition to look best from a top-down perspective */
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform: perspective(1000px) rotateX(4deg);
-}
-
-    .notebook-window:hover {
-  cursor: pointer;
-  /* Straightens out, lifts closer to the viewer, and glows */
-  transform: perspective(1000px) rotateX(0deg) translateY(-6px);
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 123, 255, 0.15);
-}
-    
+  /* Clear margins on the text below to keep spacing consistent */
+  .project-description {
+    margin-top: 20px;
+  }
 </style>
 </head>
 <body>
@@ -150,17 +111,19 @@
     <section>
       <div class="card-list">
 
-        <div class="card card-with-preview">
-
-  <a href="https://github.com/yourusername/project-one" class="notebook-window" target="_blank" aria-label="View Project Notebook">
-    <div class="window-header">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-      <span class="window-title">flight_price_prediction.ipynb</span>
-    </div>
-    <div class="window-body">
-      <pre><code><span class="keyword">import</span> duckdb
+        <div class="card card-stacked-layout">
+          <h3>US Domestic Flight Price Prediction</h3>
+          <p class="meta">2026 · <a href="https://github.com/yourusername/project-one">View on GitHub</a></p>
+          
+          <a href="https://github.com/yourusername/project-one" class="notebook-window" target="_blank" aria-label="View Project Notebook">
+            <div class="window-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="window-title">flight_price_prediction.ipynb</span>
+            </div>
+            <div class="window-body">
+              <pre><code><span class="keyword">import</span> duckdb
 <span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb
 
 <span class="comment"># Connect to 82M+ records on disk</span>
@@ -170,17 +133,12 @@ df = db.execute(query).df()
 
 print(f<span class="string">"Data loaded. Shape: {df.shape}"</span>)
 <span class="output">&gt;&gt;&gt; Data loaded. Shape: (82410213, 14) Successfully!</span></code></pre>
-    </div>
-  </a>
+            </div>
+          </a>
 
-  <div class="card-info">
-    <h3>US Domestic Flight Price Prediction</h3>
-    <p class="meta">2026 · <a href="https://github.com/yourusername/project-one">View on GitHub</a></p>
-    <p>This project aims to predict U.S. domestic flight prices using machine learning and a large-scale Expedia dataset containing over 82 million records. It explores the key factors that influence airfare, including booking timing, airline, cabin class, and itinerary characteristics, through statistical analysis and regression modeling. The project also demonstrates scalable data processing techniques using DuckDB to efficiently analyze large datasets that exceed in-memory computing limits.</p>
-    <p class="tags">Big Data Analytics · Data Visualization · Python · DuckDB · API · Pandas · NumPy · Scikit-learn · XGBoost · Matplotlib</p>
-  </div>
-
-</div>
+          <p class="project-description">This project aims to predict U.S. domestic flight prices using machine learning and a large-scale Expedia dataset containing over 82 million records. It explores the key factors that influence airfare, including booking timing, airline, cabin class, and itinerary characteristics, through statistical analysis and regression modeling. The project also demonstrates scalable data processing techniques using DuckDB to efficiently analyze large datasets that exceed in-memory computing limits.</p>
+          <p class="tags">Big Data Analytics · Data Visualization · Python · DuckDB · API · Pandas · NumPy · Scikit-learn · XGBoost · Matplotlib</p>
+        </div>
 
         <div class="card">
           <h3>Project Two</h3>
