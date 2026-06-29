@@ -1,4 +1,4 @@
-# Your Name — Personal Site
+# Sherry Xiao - Personal Website
 
 A minimal, multi-page personal site (Home / About / Projects / Blog) built with plain HTML & CSS — no build step, no dependencies.
 
