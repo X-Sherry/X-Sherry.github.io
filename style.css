@@ -1,194 +1,353 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Sherry Xiao</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+:root {
 
-<style>
-  .card-stacked-layout {
-    display: block;
-  }
+  --bg: #fdfdfb;
 
-  /* The Notebook Preview Window Box */
-  .card-stacked-layout .notebook-window {
-    width: 100%;
-    max-width: 100%;
-    background-color: #0d1117; /* GitHub Dark canvas background */
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    text-decoration: none; 
-    display: block;
-    margin: 20px 0;
-    
-    /* Subtle geometric shift transition */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    transform: perspective(1000px) rotateX(2deg);
-  }
+  --ink: #1d1d1b;
 
-  /* Interactive Hover "Pop" */
-  .card-stacked-layout .notebook-window:hover {
-    cursor: pointer;
-    transform: perspective(1000px) rotateX(0deg) translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px #444c56;
-  }
+  --muted: #6b6b66;
 
-  /* Top Control Bar */
-  .window-header {
-    background-color: #161b22; /* Sleek contrast header */
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-bottom: 1px solid #30363d;
-  }
+  --line: #e3e1da;
 
-  .dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  .red { background-color: #ff5f56; }
-  .yellow { background-color: #ffbd2e; }
-  .green { background-color: #27c93f; }
+  --accent: #3b5d50;
 
-  .window-title {
-    color: #8b949e;
-    font-size: 11px;
-    margin-left: 8px;
-    font-family: 'Inter', system-ui, sans-serif;
-    letter-spacing: 0.02em;
-  }
+  --max: 680px;
 
-  /* Clean GitHub Dark Modern Code Body */
-  .window-body {
-    padding: 18px;
-    font-size: 13.5px;
-    line-height: 1.6;
-    text-align: left;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    color: #e6edf3; 
-  }
+}
 
-  .window-body pre { 
-    margin: 0; 
-    white-space: pre-wrap; 
-  }
 
-  /* Bulletproof string color helper targeting the quotes safely */
-  .window-body .str-text {
-    color: #a5d6ff;
-  }
 
-  /* Terminal output line indicator style */
-  .output-line { 
-    display: block; 
-    margin-top: 14px; 
-    padding-top: 10px; 
-    border-top: 1px solid #21262d; 
-    color: #7ee787; 
-  }
+* { box-sizing: border-box; }
 
-  /* Fixed Custom Typography Rules for Description Paragraph */
-  p.project-description {
-    font-family: 'Times New Roman', Times, 'Source Serif 4', Georgia, serif !important;
-    font-size: 15px !important; 
-    line-height: 1.6 !important;
-    color: #1d1d1b !important;
-    margin: 20px 0 16px 0 !important;
-    letter-spacing: normal !important;
-    text-transform: none !important;
-  }
-</style>
-</head>
-<body>
 
-<header class="site">
-  <div class="wrap">
-    <a class="site-name" href="index.html">Sherry Xiao</a>
-    <nav class="site">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html" class="active">Projects</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 
-<main>
-  <div class="wrap">
-    <p class="kicker">Projects</p>
-    <h1>Things I've built</h1>
-    <p class="lede">A selection of projects, with a short note on what each one does and why you made it.</p>
+html { -webkit-text-size-adjust: 100%; }
 
-    <section>
-      <div class="card-list">
 
-        <div class="card card-stacked-layout">
-          <h3>US Domestic Flight Price Prediction</h3>
-          <p class="meta">2026 · <a href="https://github.com/yourusername/project-one">View on GitHub</a></p>
-          
-          <a href="https://github.com/yourusername/project-one" class="notebook-window" target="_blank" aria-label="View Project Notebook">
-            <div class="window-header">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-              <span class="window-title">flight_price_prediction.ipynb</span>
-            </div>
-            <div class="window-body">
-<pre><code>con = duckdb.connect()
 
-schema = con.execute(f<span class="str-text">"""
-    DESCRIBE SELECT * FROM read_csv_auto('{DATA_PATH}', header=True) LIMIT 1
-"""</span>).df()
+body {
 
-print(f<span class="str-text">'Total columns: {len(schema)}'</span>)
-display(schema)
+  margin: 0;
 
-<span class="output-line">Total columns: 14</span></code></pre>
-            </div>
-          </a>
+  background: var(--bg);
 
-          <p class="project-description">This project aims to predict U.S. domestic flight prices using machine learning and a large-scale Expedia dataset containing over 82 million records. It explores the key factors that influence airfare, including booking timing, airline, cabin class, and itinerary characteristics, through statistical analysis and regression modeling. The project also demonstrates scalable data processing techniques using DuckDB to efficiently analyze large datasets that exceed in-memory computing limits.</p>
-          <p class="tags">Big Data Analytics · Data Visualization · Python · DuckDB · API · Pandas · NumPy · Scikit-learn · XGBoost · Matplotlib</p>
-        </div>
+  color: var(--ink);
 
-        <div class="card">
-          <h3>Project Two</h3>
-          <p class="meta">2025 · <a href="https://github.com/yourusername/project-two">View on GitHub</a></p>
-          <p>One or two sentences describing what the project does, the problem it solves, and how you built it.</p>
-          <p class="tags">JavaScript · Web App</p>
-        </div>
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 
-        <div class="card">
-          <h3>Project Three</h3>
-          <p class="meta">2024 · <a href="#">Live demo</a></p>
-          <p>One or two sentences describing what the project does, the problem it solves, and how you built it.</p>
-          <p class="tags">Design · Research</p>
-        </div>
+  font-size: 18px;
 
-      </div>
-    </section>
-  </div>
-</main>
+  line-height: 1.6;
 
-<footer class="site">
-  <div class="wrap">
-    <span>© 2026 Sherry Xiao</span>
-    <span>
-      <a href="mailto:you@example.com">Email</a> ·
-      <a href="https://github.com/yourusername">GitHub</a>
-    </span>
-  </div>
-</footer>
+  -webkit-font-smoothing: antialiased;
 
-</body>
-</html>
+}
+
+
+
+a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+
+a:hover { text-decoration-color: var(--accent); }
+
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+
+
+.wrap {
+
+  max-width: var(--max);
+
+  margin: 0 auto;
+
+  padding: 0 24px;
+
+}
+
+
+
+header.site {
+
+  border-bottom: 1px solid var(--line);
+
+  padding: 28px 0 18px;
+
+}
+
+
+
+header.site .wrap {
+
+  display: flex;
+
+  align-items: baseline;
+
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+}
+
+
+
+.site-name {
+
+  font-family: 'Fraunces', 'Source Serif 4', Georgia, serif;
+
+  font-weight: 600;
+
+  font-size: 22px;
+
+  letter-spacing: -0.01em;
+
+  text-decoration: none;
+
+  color: var(--ink);
+
+}
+
+
+
+nav.site ul {
+
+  list-style: none;
+
+  display: flex;
+
+  gap: 22px;
+
+  margin: 0;
+
+  padding: 0;
+
+  font-family: 'Inter', system-ui, sans-serif;
+
+  font-size: 14px;
+
+  letter-spacing: 0.02em;
+
+  text-transform: uppercase;
+
+}
+
+
+
+nav.site a {
+
+  color: var(--muted);
+
+  text-decoration: none;
+
+}
+
+
+
+nav.site a.active,
+
+nav.site a:hover {
+
+  color: var(--ink);
+
+  border-bottom: 1px solid var(--accent);
+
+}
+
+
+
+main { padding: 56px 0 80px; }
+
+
+
+h1 {
+
+  font-family: 'Fraunces', 'Source Serif 4', Georgia, serif;
+
+  font-weight: 600;
+
+  font-size: 42px;
+
+  line-height: 1.12;
+
+  letter-spacing: -0.01em;
+
+  margin: 0 0 8px;
+
+}
+
+
+
+h2 {
+
+  font-family: 'Fraunces', 'Source Serif 4', Georgia, serif;
+
+  font-weight: 600;
+
+  font-size: 26px;
+
+  margin: 0 0 10px;
+
+}
+
+
+
+.kicker {
+
+  font-family: 'Inter', system-ui, sans-serif;
+
+  font-size: 13px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  color: var(--muted);
+
+  margin: 0 0 18px;
+
+}
+
+
+
+p.lede {
+
+  font-size: 21px;
+
+  color: var(--ink);
+
+  max-width: 34ch;
+
+}
+
+
+
+p { margin: 0 0 16px; }
+
+
+
+.muted { color: var(--muted); }
+
+
+
+section { margin-bottom: 56px; }
+
+
+
+.card-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 28px;
+
+}
+
+
+
+.card {
+
+  border-top: 1px solid var(--line);
+
+  padding-top: 20px;
+
+}
+
+
+
+.card h3 {
+
+  font-family: 'Fraunces', 'Source Serif 4', Georgia, serif;
+
+  font-size: 21px;
+
+  margin: 0 0 4px;
+
+}
+
+
+
+.card .meta {
+
+  font-family: 'Inter', system-ui, sans-serif;
+
+  font-size: 13px;
+
+  color: var(--muted);
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.card .tags {
+
+  font-family: 'Inter', system-ui, sans-serif;
+
+  font-size: 12px;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+
+  color: var(--accent);
+
+  margin-top: 10px;
+
+}
+
+
+
+footer.site {
+
+  border-top: 1px solid var(--line);
+
+  padding: 28px 0 60px;
+
+  font-family: 'Inter', system-ui, sans-serif;
+
+  font-size: 13px;
+
+  color: var(--muted);
+
+}
+
+
+
+footer.site .wrap {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+}
+
+
+
+footer.site a { color: var(--muted); text-decoration: none; }
+
+footer.site a:hover { color: var(--accent); }
+
+
+
+@media (max-width: 480px) {
+
+  h1 { font-size: 32px; }
+
+  body { font-size: 17px; }
+
+  nav.site ul { gap: 14px; }
+
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  * { transition: none !important; animation: none !important; }
+
+}
