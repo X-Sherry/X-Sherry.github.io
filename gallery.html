@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography — Sherry Xiao</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Filter bar */
+  .filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .filter-btn {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .filter-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+
+  /* Masonry grid */
+  .gallery-grid {
+    columns: 2;
+    column-gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid { columns: 1; }
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.02);
+  }
+
+  .gallery-item .caption {
+    padding: 10px 0 4px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  .gallery-item .caption strong {
+    display: block;
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 13, 0.92);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .lightbox.open {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: min(900px, 100%);
+    max-height: 90vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  .lightbox-caption {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+  }
+
+  .lightbox-close:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="site-name" href="index.html">Sherry Xiao</a>
+    <nav class="site">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="gallery.html" class="active">Photography</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="kicker">Photography</p>
+    <h1>Through the lens</h1>
+    <p class="lede" style="margin-bottom: 40px;">I shoot mostly while traveling — chasing light, texture, and the small moments between the big ones.</p>
+
+    <!-- Filter buttons — update categories to match yours -->
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="travel">Travel</button>
+      <button class="filter-btn" data-filter="people">People</button>
+      <button class="filter-btn" data-filter="nature">Nature</button>
+      <button class="filter-btn" data-filter="urban">Urban</button>
+    </div>
+
+    <!-- Gallery grid
+         HOW TO ADD PHOTOS:
+         1. Put your image files in a /photos folder in your repo
+         2. Copy one <div class="gallery-item"> block and update:
+            - data-category: matches a filter-btn data-filter value
+            - src: path to your image, e.g. photos/tokyo.jpg
+            - alt: a description of the photo
+            - <strong>: the photo title
+            - the location / date line
+    -->
+    <div class="gallery-grid" id="gallery">
+
+      <div class="gallery-item" data-category="travel">
+        <img src="photos/photo1.jpg" alt="Your photo description" loading="lazy">
+        <div class="caption">
+          <strong>Photo Title</strong>
+          Location · Year
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="urban">
+        <img src="photos/photo2.jpg" alt="Your photo description" loading="lazy">
+        <div class="caption">
+          <strong>Photo Title</strong>
+          Location · Year
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="nature">
+        <img src="photos/photo3.jpg" alt="Your photo description" loading="lazy">
+        <div class="caption">
+          <strong>Photo Title</strong>
+          Location · Year
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="people">
+        <img src="photos/photo4.jpg" alt="Your photo description" loading="lazy">
+        <div class="caption">
+          <strong>Photo Title</strong>
+          Location · Year
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="travel">
+        <img src="photos/photo5.jpg" alt="Your photo description" loading="lazy">
+        <div class="caption">
+          <strong>Photo Title</strong>
+          Location · Year
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="urban">
+        <img src="photos/photo6.jpg" alt="Your photo description" loading="lazy">
+        <div class="caption">
+          <strong>Photo Title</strong>
+          Location · Year
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">&#x2715;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Sherry Xiao</span>
+    <span>
+      <a href="mailto:xy9426@engineering.upenn.edu">Email</a> ·
+      <a href="https://www.linkedin.com/in/sherry-x/">LinkedIn</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
+      });
+    });
+  });
+
+  // Lightbox logic
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const title = item.querySelector('strong')?.textContent || '';
+      const meta = item.querySelector('.caption')?.textContent.trim() || '';
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = meta;
+      lightbox.classList.add('open');
+    });
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', () => {
+    lightbox.classList.remove('open');
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) lightbox.classList.remove('open');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
