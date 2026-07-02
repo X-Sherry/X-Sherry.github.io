@@ -175,3 +175,87 @@ footer.site a:hover { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ==========================================================================
+   Notebook Preview Window
+   ========================================================================== */
+
+/* The Main Link Wrapper */
+.notebook-window {
+  width: 100%;
+  max-width: 650px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-decoration: none; 
+  display: block;
+  margin: 20px 0;
+  
+  /* Smooth perspective & lift transitions */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: perspective(1000px) rotateX(2deg);
+}
+
+/* The Hover "Pop" and Glow Effect */
+.notebook-window:hover {
+  cursor: pointer;
+  transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(59, 93, 80, 0.2);
+}
+
+/* Window Top Bar (Mac style) */
+.window-header {
+  background-color: #2d2d2d;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+.window-title {
+  color: #999;
+  font-size: 11px;
+  margin-left: 8px;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Code Body Styling */
+.window-body {
+  padding: 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: left;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  color: #e6edf3; /* Clean off-white code text */
+}
+
+.window-body pre { 
+  margin: 0; 
+  white-space: pre-wrap; 
+}
+
+/* Syntax Highlighting */
+.keyword { 
+  color: #ff7b72; /* Coral red for keywords */
+} 
+
+.string { 
+  color: #a5d6ff; /* Light sky blue for strings */
+}
+
+.comment { 
+  color: #8b949e; 
+  font-style: italic; 
+}
