@@ -139,14 +139,14 @@
               <span class="dot yellow"></span>
               <span class="dot green"></span>
               <span class="window-title">flight_price_prediction.ipynb</span>
-            </div>
+              
            <div class="window-body">
   <pre><code>con = duckdb.connect()
 schema = con.execute(f<span class="string">"""
     DESCRIBE SELECT * FROM read_csv_auto('{DATA_PATH}', header=True) LIMIT 1
 """</span>).df()
 <span class="keyword">print</span>(f<span class="string">'Total columns: {len(schema)}'</span>)
-display(schema)
+display(schema)</code></pre>
 </div>
           </a>
 
