@@ -35,9 +35,27 @@
 
         <div class="card">
           <h3>Project One</h3>
-          <p class="meta">2026 · <a href="https://github.com/yourusername/project-one">View on GitHub</a></p>
-          <p>One or two sentences describing what the project does, the problem it solves, and how you built it.</p>
-          <p class="tags">Python · API · Open Source</p>
+          <p class="meta">2026 · <a href="https://github.com/X-Sherry/Flight_Price_Prediction">View on GitHub</a></p>
+          <a href="https://github.com/X-Sherry/Flight_Price_Prediction" class="notebook-window" target="_blank" aria-label="View Project Notebook"></a>
+          
+          <div class="window-header"><a href="https://github.com/X-Sherry/Flight_Price_Prediction" class="notebook-window" target="_blank" aria-label="View Project Notebook">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="window-title">flight_price_prediction.ipynb</span>
+              
+           <div class="window-body">
+  <pre><code>con = duckdb.connect()
+schema = con.execute(f<span class="string">"""
+    DESCRIBE SELECT * FROM read_csv_auto('{DATA_PATH}', header=True) LIMIT 1
+"""</span>).df()
+<span class="keyword">print</span>(f<span class="string">'Total columns: {len(schema)}'</span>)
+display(schema)</code></pre>
+</div>
+          </a>
+
+          <p class="project-description">This project aims to predict U.S. domestic flight prices using machine learning and a large-scale Expedia dataset containing over 82 million records. It explores the key factors that influence airfare, including booking timing, airline, cabin class, and itinerary characteristics, through statistical analysis and regression modeling. The project also demonstrates scalable data processing techniques using DuckDB to efficiently analyze large datasets that exceed in-memory computing limits.</p>
+          <p class="tags">Big Data Analytics · Data Visualization · Python · DuckDB · API · Pandas · NumPy · Scikit-learn · XGBoost · Matplotlib</p>
         </div>
 
         <div class="card">
